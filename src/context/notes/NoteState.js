@@ -1,6 +1,5 @@
-import React from "react";
+import React,{ useState } from "react";
 import NoteContext from "./noteContext";
-import { useState } from "react";
 
 const NoteState = (props)=>{
     const notesInitial = [
@@ -69,8 +68,39 @@ const NoteState = (props)=>{
         }
       ]
     const [notes, setNotes] = useState(notesInitial)
+
+
+    //Add a note
+
+    const addNote = (title, descripition, tag)=>{
+      //console.log("add note called");
+      //TODO API call
+    const  note = 
+      {
+        "id": "56648fdeeb91013e345436e89bea0e",
+        "user": "66479d16eec9e3065b48e386",
+        "title": title,
+        "descripition": descripition,
+        "tag": tag,
+        "date": "2024-05-18T19:13:50.445Z",
+        "__v": 0
+      };
+      setNotes(notes.concat(note))
+    }
+
+    //Delete a note
+
+    const deleteNote = ()=>{
+
+    }
+
+    // Edit a Note
+
+    const editNote = ()=>{
+
+    }
     return (
-        <NoteContext.Provider value={{notes, setNotes}}>
+        <NoteContext.Provider value={{notes, addNote, deleteNote, editNote }}>
             {props.children}
         </NoteContext.Provider>
     )
