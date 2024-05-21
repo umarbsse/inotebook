@@ -4,7 +4,7 @@ import noteContext from "../context/notes/noteContext";
 export default function AddNote() {
     const context = useContext(noteContext);
     const {  addNote } = context;
-    console.log(addNote)
+    //console.log(addNote)
     const handleClick = (e)=>{
         e.preventDefault();
         addNote(note.title, note.descripition, note.tag)
