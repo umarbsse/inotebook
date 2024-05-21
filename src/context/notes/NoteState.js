@@ -61,8 +61,25 @@ const NoteState = (props) => {
 
   //Delete a note
 
-  const deleteNote = (id) => {
-    console.log("deleting the note with id " + id);
+  const deleteNote = async (id) => {
+
+    
+    //API CALL
+    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+      method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0NzlkMTZlZWM5ZTMwNjViNDhlMzg2In0sImlhdCI6MTcxNTk3MjE2Nn0.NEDKQnzbmBLmFwRtPw6ARIKJxMerrdFUEBgpuNWet3s",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+
+
+    });
+    const json = response.json();
+
+
+
+    //console.log("deleting the note with id " + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
@@ -74,7 +91,7 @@ const NoteState = (props) => {
   const editNote = async (id, title, descripition, tag) => {
     //API CALL
 
-    const response = await fetch(`${host}/api/notes/updatenote/6648fd1fd48c86d6c6fd7985/${id}`, {
+    const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
