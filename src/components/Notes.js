@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import noteContext from "../context/notes/noteContext";
 import Noteitem from "./Noteitem";
 import AddNote from "./AddNote";
-import { useRef } from "react";
 
 export default function Notes() {
   const context = useContext(noteContext);
@@ -13,9 +12,24 @@ export default function Notes() {
     // eslint-disable-next-line
   },[])
   const ref = useRef(null);
-  const updateNote = (note)=>{
-    ref.current.click()
+  const [note, setNote] = useState({etitle:"",edescripition:"",etag:""})
+
+  const updateNote = (currentNote)=>{
+    ref.current.click();
+    //console.log(currentNote);
+    setNote({etitle:currentNote.title, edescripition:currentNote.descripition, etag:currentNote.tag});
   }
+
+  
+  const handleClick = (e)=>{
+    console.log("updating the note ", note)
+    e.preventDefault();
+}
+
+
+const onChange = (e) =>{
+    setNote({...note,[e.target.name]:e.target.value})
+}
   return (
     <>
       <AddNote />
@@ -34,21 +48,21 @@ export default function Notes() {
             <form className='my-3'>
               <div className="mb-3">
                 <label htmlFor="title" className="form-label">Title</label>
-                <input type="text" className="form-control" id="etitle" name='etitle' onChange={onChange} />
+                <input type="text" className="form-control" id="etitle" value={note.etitle} name='etitle' onChange={onChange} />
               </div>
               <div className="mb-3">
                 <label htmlFor="descripition" className="form-label">Descripition</label>
-                <input type="text" className="form-control" id="edescripition" name='edescripition' onChange={onChange} />
+                <input type="text" className="form-control" id="edescripition" value={note.edescripition} name='edescripition' onChange={onChange} />
               </div>
               <div className="mb-3">
                 <label htmlFor="tag" className="form-label">Tag</label>
-                <input type="text" className="form-control" id="etag" name='etag' onChange={onChange} />
+                <input type="text" className="form-control" id="etag" name='etag' value={note.etag} onChange={onChange} />
               </div>
             </form>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Update Note</button>
+              <button type="button" className="btn btn-primary" onClick={handleClick}>Update Note</button>
             </div>
           </div>
         </div>
