@@ -15,8 +15,6 @@ export default function Login() {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {
             "Content-Type": "application/json",
-            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0NzlkMTZlZWM5ZTMwNjViNDhlMzg2In0sImlhdCI6MTcxNTk3MjE2Nn0.NEDKQnzbmBLmFwRtPw6ARIKJxMerrdFUEBgpuNWet3s",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify({email:credentials.email,password:credentials.password}), // body data type must match "Content-Type" header
         });
